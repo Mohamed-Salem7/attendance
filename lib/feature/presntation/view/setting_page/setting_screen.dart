@@ -1,8 +1,10 @@
 import 'package:attendance_app/core/utils/app_images/images_manager.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/component/coustem_tile.dart';
+import 'package:attendance_app/feature/presntation/view/setting_page/profile_page/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -30,7 +32,10 @@ class SettingScreen extends StatelessWidget {
             ),
             SizedBox(height: 20.h,),
             InkWell(
-              onTap: () {},
+              onTap: ()
+              {
+                Get.to(const ProfileScreen(),transition: Transition.circularReveal);
+              },
               child: Row(
                 children: [
                   CircleAvatar(
