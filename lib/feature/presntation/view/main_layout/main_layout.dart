@@ -1,7 +1,7 @@
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/state.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,32 +16,37 @@ class MainLayout extends StatelessWidget {
         var cubit = MainCubit.get(context);
         return Scaffold(
           body: cubit.screen[cubit.currentIndex],
-          bottomNavigationBar: DotNavigationBar(
+          bottomNavigationBar: FloatingNavbar(
             currentIndex: cubit.currentIndex,
-            backgroundColor: Colors.black,
-
-            borderRadius: 30.r,
+            backgroundColor: AppColor.primaryColor,
+            itemBorderRadius: 20.r,
+            borderRadius: 20.r,
+            margin:  EdgeInsets.only(bottom: 8.h,left: 8.w,right: 8.w),
             onTap: (value) {
               cubit.changeIndex(value);
             },
             items: [
               /// Home
-              DotNavigationBarItem(
-                  icon: Icon(Icons.home_filled),
-                  selectedColor: AppColor.primaryColor,
-                  unselectedColor: Colors.grey,
+              FloatingNavbarItem(
+                  icon: Icons.home_filled,
+                  title: 'Home'
+                  /*selectedColor: AppColor.primaryColor,
+                  unselectedColor: Colors.grey,*/
               ),
               /// Records
-              DotNavigationBarItem(
-                  icon: Icon(Icons.notifications_none_outlined),
-                  selectedColor: AppColor.primaryColor,
-                  unselectedColor: Colors.grey,
+              FloatingNavbarItem(
+                  icon: Icons.notifications_none_outlined,
+                  title: 'Notification'
+                  /*selectedColor: AppColor.primaryColor,
+                  unselectedColor: Colors.grey,*/
               ),
               /// Profile
-              DotNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  selectedColor: AppColor.primaryColor,
-                  unselectedColor: Colors.grey),
+              FloatingNavbarItem(
+                  icon: Icons.person,
+                title: 'Setting'
+              ),
+                  /*selectedColor: AppColor.primaryColor,
+                  unselectedColor: Colors.grey),*/
             ],
           ),
         );
