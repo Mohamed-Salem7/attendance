@@ -1,3 +1,4 @@
+import 'package:attendance_app/core/function/constant.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,7 +49,7 @@ class ClassContainer extends StatelessWidget {
                 height: 10.h,
               ),
               Text(
-                'Dr: $name',
+                languageApp == 'Arabic'? "دكتور: $name":'Dr: $name',
                 style: TextStyle(
                   fontSize: 14.spMin,
                   fontWeight: FontWeight.w400,
@@ -59,7 +60,7 @@ class ClassContainer extends StatelessWidget {
                 height: 10.h,
               ),
               Text(
-                'Attendances: $attendances',
+                languageApp == 'Arabic'? "عدد مرات الحضور : $attendances":'Attendances: $attendances',
                 style: TextStyle(
                   fontSize: 14.spMin,
                   fontWeight: FontWeight.w400,

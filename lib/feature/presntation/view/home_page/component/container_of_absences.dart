@@ -1,3 +1,5 @@
+import 'package:attendance_app/core/function/constant.dart';
+import 'package:attendance_app/core/utils/App_string/language_string.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,8 +14,8 @@ class ContainerOfAbsences extends StatelessWidget {
       width: 360.w,
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
-        border: Border(
-          left: BorderSide(
+        border: BorderDirectional(
+          start: BorderSide(
             color: AppColor.primaryColor,
             width: 5.w,
           ),
@@ -24,7 +26,7 @@ class ContainerOfAbsences extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              'Number of absences',
+              languageApp == 'Arabic'? AppStrings.absencesAr: AppStrings.absencesEn,
               style: TextStyle(
                 fontSize: 14.spMin,
                 fontWeight: FontWeight.w400,

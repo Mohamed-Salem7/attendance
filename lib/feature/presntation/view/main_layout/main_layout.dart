@@ -19,6 +19,7 @@ class MainLayout extends StatelessWidget {
           bottomNavigationBar: DotNavigationBar(
             currentIndex: cubit.currentIndex,
             backgroundColor: Colors.black,
+
             borderRadius: 30.r,
             onTap: (value) {
               cubit.changeIndex(value);

@@ -1,3 +1,5 @@
+import 'package:attendance_app/core/function/constant.dart';
+import 'package:attendance_app/core/utils/App_string/language_string.dart';
 import 'package:attendance_app/core/utils/app_images/images_manager.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/view/notification_page/component/body_notification.dart';
@@ -9,38 +11,41 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 40.h,
-            ),
-            Text(
-              'Notifications',
-              style: TextStyle(
-                fontSize: 26.spMin,
-                fontWeight: FontWeight.w500,
-                fontStyle: FontStyle.italic,
+    return Directionality(
+      textDirection: languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 40.h,
               ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Expanded(
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => const BodyNotification(),
-                separatorBuilder: (context, index) => SizedBox(
-                  height: 15.h,
+              Text(
+                languageApp == 'Arabic'? AppStrings.notificationScreenAr : AppStrings.notificationScreenEn,
+                style: TextStyle(
+                  fontSize: 26.spMin,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
                 ),
-                itemCount: 10,
               ),
-            ),
-          ],
+              SizedBox(
+                height: 20.h,
+              ),
+              Expanded(
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) => const BodyNotification(),
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 15.h,
+                  ),
+                  itemCount: 10,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

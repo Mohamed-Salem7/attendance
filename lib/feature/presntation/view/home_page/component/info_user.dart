@@ -1,3 +1,5 @@
+import 'package:attendance_app/core/function/constant.dart';
+import 'package:attendance_app/core/utils/App_string/language_string.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,13 +10,13 @@ class InfoUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container  (
-      height: 95.h,
+      height: languageApp == 'Arabic'? 120.h : 95.h,
       width: 360.w,
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
-        border: Border(
-          left: BorderSide(
+        border: BorderDirectional(
+          start: BorderSide(
             color: AppColor.primaryColor,
             width: 5.w,
           ),
@@ -24,7 +26,7 @@ class InfoUser extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Welcome, Mohamed M Salem',
+            languageApp == 'Arabic'? "مرحبا,محمد محمود سالم":'Welcome, Mohamed M Salem',
             style: TextStyle(
               fontSize: 14.spMin,
               fontWeight: FontWeight.w400,
@@ -34,7 +36,7 @@ class InfoUser extends StatelessWidget {
             height: 5.h,
           ),
           Text(
-            'When was the last time you attended the class',
+            languageApp == 'Arabic'? AppStrings.whenLastTimeAr: AppStrings.whenLastTimeEn,
             style: TextStyle(
               fontSize: 14.spMin,
               fontWeight: FontWeight.w300,
@@ -48,7 +50,7 @@ class InfoUser extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                'at 02:07 PM Today',
+                languageApp == 'Arabic'? "اليوم عند 2:07 مساءا": 'at 02:07 PM Today',
                 textAlign: TextAlign.end,
                 style: TextStyle(
                   fontSize: 18.spMin,

@@ -9,3 +9,14 @@ void navigatorFinished(context, widget) => Navigator.pushAndRemoveUntil(
     return false;
   },
 );
+
+
+
+
+
+
+
+
+
+
+String languageApp = 'English';
