@@ -5,6 +5,7 @@ import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/controllers/Setting_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/Setting_cubit/state.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/Dialog_language/dialog_language.dart';
+import 'package:attendance_app/feature/presntation/view/setting_page/about_page/about_screen.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/component/coustem_tile.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/profile_page/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -76,23 +77,6 @@ class SettingScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     CustomTile(
-                      title:  languageApp == 'Arabic'? AppStrings.notificationScreenAr: AppStrings.notificationScreenEn,
-                      icon: Icons.notifications_none_outlined,
-                      isLanguage: false,
-                    ),
-
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    CustomTile(
-                      title: languageApp == 'Arabic'? AppStrings.aboutAr:AppStrings.aboutEn,
-                      icon: Icons.info_outlined,
-                      isLanguage: false,
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    CustomTile(
                       title: languageApp == 'Arabic'? AppStrings.languageAr : AppStrings.languageEn,
                       isLanguage: true,
                       icon: Icons.language_outlined,
@@ -108,10 +92,26 @@ class SettingScreen extends StatelessWidget {
                       height: 20.h,
                     ),
                     CustomTile(
+                      title: languageApp == 'Arabic'? AppStrings.aboutAr:AppStrings.aboutEn,
+                      icon: Icons.info_outlined,
+                      isLanguage: false,
+                      function: ()
+                      {
+                        Get.to(AboutScreen());
+                      },
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    CustomTile(
                       title: languageApp == 'Arabic'? AppStrings.logoutAr: AppStrings.logoutEn,
                       icon: Icons.exit_to_app_sharp,
                       isLanguage: false,
                       color: Colors.red,
+                      function: ()
+                      {
+
+                      },
                     ),
                   ],
                 ),

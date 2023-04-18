@@ -27,7 +27,7 @@ class AppStrings {
 
 
   static const String aboutEn = "About";
-  static const String aboutAr = "عنا";
+  static const String aboutAr = "نبذة عنا";
 
   static const String languageEn = "Language";
   static const String languageAr = "اللغة";
@@ -35,6 +35,29 @@ class AppStrings {
 
   static const String logoutEn = "Logout";
   static const String logoutAr = "تسجيل الخروج";
+
+
+  static const String nameEn = "Name";
+  static const String nameAr = "الإسم";
+
+
+  static const String passwordEn = "Password";
+  static const String passwordAr = "كلمة المرور";
+
+  static const String phoneEn = "Phone Number";
+  static const String phoneAr = "رقم الهاتف";
+
+
+  static const String updateProfileEn = "Update Profile";
+  static const String updateProfileAr = "تحديث الملف الشخصي";
+
+
+  static const String saveEn = "Save";
+  static const String saveAr = "حفظ";
+
+
+  static const String cancelEn = "Cancel";
+  static const String cancelAr = "إلغاء";
 
 
 }
