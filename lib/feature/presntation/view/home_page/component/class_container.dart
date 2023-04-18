@@ -20,7 +20,6 @@ class ClassContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
        borderRadius: BorderRadius.circular(15.r),
-      focusColor: Colors.red,
       onTap: function,
       child: Container(
         height: 60.h,
@@ -29,7 +28,7 @@ class ClassContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             15.r,
           ),
-          color: Colors.grey.shade100,
+          color: Colors.grey.shade800,
           border: Border.all(color: AppColor.primaryColor, width: 1.5.w),
         ),
         child: Padding(
@@ -42,7 +41,7 @@ class ClassContainer extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.spMin,
                   fontWeight: FontWeight.w400,
-                  color: Colors.black87,
+                  color: Colors.white,
                 ),
               ),
               SizedBox(
@@ -53,7 +52,7 @@ class ClassContainer extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14.spMin,
                   fontWeight: FontWeight.w400,
-                  color: Colors.black87,
+                  color: Colors.white,
                 ),
               ),
               SizedBox(
@@ -64,7 +63,7 @@ class ClassContainer extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14.spMin,
                   fontWeight: FontWeight.w400,
-                  color: Colors.black87,
+                  color: Colors.white,
                 ),
               ),
             ],

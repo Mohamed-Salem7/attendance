@@ -14,7 +14,7 @@ class InfoUser extends StatelessWidget {
       width: 360.w,
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: Colors.grey.shade800,
         border: BorderDirectional(
           start: BorderSide(
             color: AppColor.primaryColor,
@@ -30,6 +30,7 @@ class InfoUser extends StatelessWidget {
             style: TextStyle(
               fontSize: 14.spMin,
               fontWeight: FontWeight.w400,
+              color: Colors.white,
             ),
           ),
           SizedBox(

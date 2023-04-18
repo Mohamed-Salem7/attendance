@@ -1,4 +1,5 @@
 import 'package:attendance_app/core/function/constant.dart';
+import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/controllers/Setting_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/Setting_cubit/state.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class LanguageDialog extends StatelessWidget {
           return Directionality(
             textDirection: languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
             child: Dialog(
+              backgroundColor: AppColor.primary2Color,
               insetPadding: const EdgeInsets.all(20),
               child: SizedBox(
                 height: 180.h,
@@ -32,7 +34,7 @@ class LanguageDialog extends StatelessWidget {
                       Text(
                         languageApp == 'Arabic' ? 'اللغة': 'Language',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 18.spMin,
                           fontWeight: FontWeight.w400,
                         ),
@@ -54,7 +56,7 @@ class LanguageDialog extends StatelessWidget {
                           Text(
                             languageApp == 'Arabic' ? "إنجليزي" : 'English',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Colors.white,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 18.spMin),
                           )
@@ -74,7 +76,7 @@ class LanguageDialog extends StatelessWidget {
                           Text(
                             languageApp == 'Arabic' ? "عربي" : 'Arabic',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.w400,
                               fontSize: 18.spMin,
                             ),

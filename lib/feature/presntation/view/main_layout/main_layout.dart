@@ -18,6 +18,7 @@ class MainLayout extends StatelessWidget {
         return Directionality(
           textDirection: languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
           child: Scaffold(
+            backgroundColor: AppColor.primary2Color,
             body: cubit.screen[cubit.currentIndex],
             bottomNavigationBar: FloatingNavbar(
               currentIndex: cubit.currentIndex,

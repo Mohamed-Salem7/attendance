@@ -26,6 +26,7 @@ class SettingScreen extends StatelessWidget {
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             child: Scaffold(
+              backgroundColor: AppColor.primary2Color,
               body: Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
                 child: Column(
@@ -40,7 +41,7 @@ class SettingScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 26.spMin,
                         fontWeight: FontWeight.w500,
-
+                        color: Colors.white,
                         fontStyle: FontStyle.italic,
                       ),
                     ),
@@ -63,12 +64,14 @@ class SettingScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18.spMin,
                               fontWeight: FontWeight.w400,
+                              color: Colors.white,
                               fontStyle: FontStyle.italic,
                             ),
                           ),
                           const Spacer(),
                           const Icon(
                             Icons.arrow_forward_ios,
+                            color: Colors.white,
                           ),
                         ],
                       ),

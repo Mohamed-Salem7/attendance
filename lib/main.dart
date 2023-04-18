@@ -1,4 +1,5 @@
 import 'package:attendance_app/core/function/constant.dart';
+import 'package:attendance_app/core/network/bloc_observer.dart';
 import 'package:attendance_app/core/network/cache_helper.dart';
 import 'package:attendance_app/feature/presntation/controllers/Setting_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/auth_cubit/cubit.dart';
@@ -6,22 +7,22 @@ import 'package:attendance_app/feature/presntation/controllers/main_cubit/cubit.
 import 'package:attendance_app/feature/presntation/view/main_layout/main_layout.dart';
 import 'package:attendance_app/feature/presntation/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
 
+  Bloc.observer = MyBlocObserver();
 
-  if(CacheHelper.getData(key: 'language') != null)
-  {
+  if (CacheHelper.getData(key: 'language') != null) {
     languageApp = CacheHelper.getData(key: 'language');
   }
 
   print(languageApp);
-
 
   runApp(const MyApp());
 }

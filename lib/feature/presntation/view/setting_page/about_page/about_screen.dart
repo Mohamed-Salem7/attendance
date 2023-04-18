@@ -13,6 +13,7 @@ class AboutScreen extends StatelessWidget {
       textDirection:
           languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
+        backgroundColor: AppColor.primary2Color,
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
           child: SizedBox(
@@ -32,6 +33,7 @@ class AboutScreen extends StatelessWidget {
                     fontSize: 26.spMin,
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.italic,
+                    color: Colors.white,
                   ),
                 ),
                 SizedBox(
@@ -41,7 +43,7 @@ class AboutScreen extends StatelessWidget {
                   height: 350.h,
                   width: 360.w,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.grey.shade800,
                     border: Border.all(
                         color: AppColor.primaryColor, width: 1.5.spMin),
                     borderRadius: BorderRadius.circular(
@@ -60,7 +62,7 @@ class AboutScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         overflow: TextOverflow.ellipsis,
                         letterSpacing: 1.spMin,
-                        color: Colors.black87,
+                        color: Colors.white,
                       ),
                     ),
                   ),

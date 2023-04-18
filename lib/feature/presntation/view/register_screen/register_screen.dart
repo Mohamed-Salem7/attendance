@@ -23,6 +23,7 @@ class RegisterScreen extends StatelessWidget {
         builder: (context, state) {
           var cubit = AuthCubit.get(context);
           return Scaffold(
+            backgroundColor: AppColor.primary2Color,
             body: Center(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -35,7 +36,9 @@ class RegisterScreen extends StatelessWidget {
                       Text(
                         'Register Now',
                         style: TextStyle(
-                            fontSize: 24.spMin, fontWeight: FontWeight.bold),
+                            fontSize: 24.spMin, fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                       SizedBox(
                         height: 8.h,
@@ -44,6 +47,7 @@ class RegisterScreen extends StatelessWidget {
                         'Please enter you information to register.',
                         style: TextStyle(
                           fontSize: 14.spMin,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(
@@ -93,7 +97,7 @@ class RegisterScreen extends StatelessWidget {
                               fillColor: MaterialStateProperty.resolveWith(
                                 (states) => AppColor.primaryColor,
                               )),
-                          const Text('Student'),
+                          const Text('Student',style: TextStyle(color: Colors.white,),),
                           Radio(
                               value: 1,
                               groupValue: cubit.index,
@@ -104,7 +108,7 @@ class RegisterScreen extends StatelessWidget {
                               fillColor: MaterialStateProperty.resolveWith(
                                 (states) => AppColor.primaryColor,
                               )),
-                          const Text('Teacher'),
+                          const Text('Teacher',style: TextStyle(color: Colors.white,),),
                           Radio(
                               value: 2,
                               groupValue: cubit.index,
@@ -115,7 +119,7 @@ class RegisterScreen extends StatelessWidget {
                               fillColor: MaterialStateProperty.resolveWith(
                                 (states) => AppColor.primaryColor,
                               )),
-                          const Text('Guardian'),
+                          const Text('Guardian',style: TextStyle(color: Colors.white,),),
                         ],
                       ),
                       SizedBox(height: 50.h),
@@ -147,7 +151,7 @@ class RegisterScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Already you have an account?'),
+                          const Text('Already you have an account?',style: TextStyle(color: Colors.white,),),
                           TextButton(
                             onPressed: () {
                               navigatorFinished(context, const LoginScreen());

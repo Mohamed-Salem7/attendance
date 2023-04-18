@@ -42,6 +42,7 @@ dependencies:
   flutter_onboarding_slider: ^1.0.9
   floating_bottom_navigation_bar: ^1.5.2
   shared_preferences: ^2.1.0
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:

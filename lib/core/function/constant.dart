@@ -19,4 +19,6 @@ void navigatorFinished(context, widget) => Navigator.pushAndRemoveUntil(
 
 
 
+bool isRegenerate = false;
+
 String languageApp = 'English';

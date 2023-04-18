@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
             onTap: (){},
             obscureText: isPassword ?  cubit.isPasswordVisibility : false,
             decoration: InputDecoration(
-                fillColor: Colors.grey.shade200,
+                fillColor: Colors.grey.shade900,
                 prefixIcon: isPassword ? const Icon(Icons.lock_outline) : null,
                 suffixIcon: isPassword
                     ? cubit.isPasswordVisibility

@@ -4,8 +4,10 @@ import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/component/class_container.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/component/container_of_absences.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/component/info_user.dart';
+import 'package:attendance_app/feature/presntation/view/home_page/qr_pages/qr_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -30,6 +32,7 @@ class HomeScreen extends StatelessWidget {
     return Directionality(
       textDirection: languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
+        backgroundColor: AppColor.primary2Color,
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
           child: Column(
@@ -44,6 +47,7 @@ class HomeScreen extends StatelessWidget {
                   fontSize: 26.spMin,
                   fontWeight: FontWeight.w500,
                   fontStyle: FontStyle.italic,
+                  color: Colors.white,
                 ),
               ),
               SizedBox(
@@ -62,6 +66,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.spMin,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
               Expanded(
@@ -80,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                       name: name[index],
                       attendances: attendances[index],
                       function: () {
-                        print(name[index]);
+                        Get.to(const QrCodeScreen(),transition: Transition.fadeIn);
                       },
                     );
                   },

@@ -27,6 +27,7 @@ class BodyNotification extends StatelessWidget {
                   fontSize: 18.spMin,
                   fontWeight: FontWeight.w500,
                   fontStyle: FontStyle.italic,
+                  color: Colors.white,
                 ),
               ),
               Text(
@@ -35,6 +36,7 @@ class BodyNotification extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 14.spMin,
+                  color: Colors.white,
                   fontStyle: FontStyle.italic,
                 ),
               ),

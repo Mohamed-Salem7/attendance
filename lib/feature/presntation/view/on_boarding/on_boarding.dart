@@ -17,9 +17,9 @@ class OnBoarding extends StatelessWidget {
       body: CupertinoApp(
         debugShowCheckedModeBanner: false,
         home: OnBoardingSlider(
-          headerBackgroundColor: Colors.white,
+          headerBackgroundColor: AppColor.primary2Color,
           finishButtonText: 'Register',
-          pageBackgroundColor: Colors.white,
+          pageBackgroundColor: AppColor.primary2Color,
           controllerColor: AppColor.primaryColor,
           finishButtonStyle: const FinishButtonStyle(
             backgroundColor:AppColor.primaryColor,
@@ -75,6 +75,7 @@ class OnBoarding extends StatelessWidget {
                     'The Qr Code is generate at student to scan',
                     style: TextStyle(
                       fontSize: 18.spMin,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -91,6 +92,7 @@ class OnBoarding extends StatelessWidget {
                     'Scanning the qr code at teacher',
                     style: TextStyle(
                       fontSize: 18.spMin,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -106,6 +108,7 @@ class OnBoarding extends StatelessWidget {
                   Text(
                     'Checking the result of the QR code, whether it matches or not',
                     style: TextStyle(
+                      color: Colors.white,
                       fontSize: 18.spMin,
                     ),
                   ),

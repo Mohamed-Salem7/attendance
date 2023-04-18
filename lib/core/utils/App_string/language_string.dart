@@ -59,5 +59,8 @@ class AppStrings {
   static const String cancelEn = "Cancel";
   static const String cancelAr = "إلغاء";
 
+  static const String qrCodeEn = "Attendance registration through this code";
+  static const String qrCodeAr = "تسجيل حضور من خلال هذا الكود";
+
 
 }

@@ -13,7 +13,7 @@ class ContainerOfAbsences extends StatelessWidget {
       height: 40.h,
       width: 360.w,
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: Colors.grey.shade800,
         border: BorderDirectional(
           start: BorderSide(
             color: AppColor.primaryColor,
@@ -30,6 +30,7 @@ class ContainerOfAbsences extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14.spMin,
                 fontWeight: FontWeight.w400,
+                color: Colors.white,
               ),
             ),
             Spacer(),

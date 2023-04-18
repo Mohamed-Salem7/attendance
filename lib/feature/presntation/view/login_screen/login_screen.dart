@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
     var stdNumberController = TextEditingController();
     var passwordController = TextEditingController();
     return Scaffold(
+      backgroundColor: AppColor.primary2Color,
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -27,7 +28,7 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   'Welcome to Attendance app',
                   style: TextStyle(
-                      fontSize: 24.spMin, fontWeight: FontWeight.bold),
+                      fontSize: 24.spMin, fontWeight: FontWeight.bold,color: Colors.white,),
                 ),
                 SizedBox(
                   height: 8.h,
@@ -35,6 +36,7 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   'Login with you student number and password to app.',
                   style: TextStyle(
+                    color: Colors.white,
                     fontSize: 14.spMin,
                   ),
                 ),
@@ -100,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Don\'t have an account?'),
+                    const Text('Don\'t have an account?',style: TextStyle(color: Colors.white,),),
                     TextButton(
                       onPressed: () {
                         Get.to(RegisterScreen(),transition: Transition.leftToRight);

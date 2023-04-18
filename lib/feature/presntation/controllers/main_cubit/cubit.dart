@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/state.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/home_screen.dart';
 import 'package:attendance_app/feature/presntation/view/notification_page/notification_screen.dart';
@@ -27,5 +29,35 @@ class MainCubit extends Cubit<MainState> {
     const NotificationScreen(),
     const SettingScreen(),
   ];
+
+
+  bool isRegenerate = false;
+
+  void changeRegenerateState()
+  {
+    isRegenerate = true;
+    emit(LoadingGenerateQrCodeState());
+  }
+
+
+  bool isSelect = false;
+
+  String qrCode = '';
+  String generateRandomString(int length) {
+    var rand = Random();
+    var codeUnits = List.generate(length,
+            (index) => rand.nextInt(26) + 97); //// Generates a random lowercase letter
+    if(isSelect) {
+      emit(SuccessGenerateQrCodeState());
+      isSelect = false;
+    }
+    qrCode = String.fromCharCodes(codeUnits);
+    return String.fromCharCodes(codeUnits);
+
+
+
+  }
+
+
 
 }

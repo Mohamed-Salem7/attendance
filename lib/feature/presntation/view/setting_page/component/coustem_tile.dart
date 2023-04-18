@@ -46,6 +46,7 @@ class CustomTile extends StatelessWidget {
                     fontSize: languageApp == 'Arabic'? 16.spMin:18.spMin,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.italic,
+                    color: Colors.white,
                   ),
                 ),
                 if (isLanguage)
@@ -54,6 +55,7 @@ class CustomTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14.spMin,
                       fontStyle: FontStyle.italic,
+                      color: Colors.white,
                     ),
                   ),
               ],
@@ -61,6 +63,7 @@ class CustomTile extends StatelessWidget {
             const Spacer(),
             const Icon(
               Icons.arrow_forward_ios,
+              color: Colors.white,
             ),
           ],
         ),

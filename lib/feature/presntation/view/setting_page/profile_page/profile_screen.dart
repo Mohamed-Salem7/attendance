@@ -18,6 +18,7 @@ class ProfileScreen extends StatelessWidget {
     return Directionality(
       textDirection: languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
+        backgroundColor: AppColor.primary2Color,
         body: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
           child: Column(
@@ -32,6 +33,7 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 26.spMin,
                   fontWeight: FontWeight.w500,
+                  color: Colors.white,
                   fontStyle: FontStyle.italic,
                 ),
               ),
