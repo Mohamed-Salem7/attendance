@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -108,7 +109,7 @@ class SettingScreen extends StatelessWidget {
                     ),
                     CustomTile(
                       title: languageApp == 'Arabic'? AppStrings.logoutAr: AppStrings.logoutEn,
-                      icon: Icons.exit_to_app_sharp,
+                      icon: LineIcon.alternateSignOut().icon!,
                       isLanguage: false,
                       color: Colors.red,
                       function: ()

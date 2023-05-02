@@ -2,6 +2,7 @@ import 'package:attendance_app/core/function/constant.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:line_icons/line_icon.dart';
 
 class CustomTile extends StatelessWidget {
   CustomTile(
@@ -9,7 +10,7 @@ class CustomTile extends StatelessWidget {
       required this.title,
       required this.icon,
       this.color = AppColor.primaryColor,
-        this.function,
+      this.function,
       required this.isLanguage})
       : super(key: key);
 
@@ -43,7 +44,7 @@ class CustomTile extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: languageApp == 'Arabic'? 16.spMin:18.spMin,
+                    fontSize: languageApp == 'Arabic' ? 16.spMin : 18.spMin,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.italic,
                     color: Colors.white,
@@ -51,7 +52,7 @@ class CustomTile extends StatelessWidget {
                 ),
                 if (isLanguage)
                   Text(
-                    languageApp == 'Arabic'?  'العربية': 'English',
+                    languageApp == 'Arabic' ? 'العربية' : 'English',
                     style: TextStyle(
                       fontSize: 14.spMin,
                       fontStyle: FontStyle.italic,

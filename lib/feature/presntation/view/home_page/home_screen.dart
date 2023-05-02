@@ -9,6 +9,7 @@ import 'package:attendance_app/feature/presntation/view/home_page/scan_qr/scan_q
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -42,14 +43,21 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 40.h,
               ),
-              Text(
-                languageApp == 'Arabic'? AppStrings.homeScreenAr : AppStrings.homeScreenEn,
-                style: TextStyle(
-                  fontSize: 26.spMin,
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.white,
-                ),
+              Row(
+                children: [
+                  Text(
+                    languageApp == 'Arabic'? AppStrings.homeScreenAr : AppStrings.homeScreenEn,
+                    style: TextStyle(
+                      fontSize: 26.spMin,
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.post_add,color: Colors.white,size: 30.spMin,),),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.person,color: Colors.white,size: 30.spMin,),),
+                ],
               ),
               SizedBox(
                 height: 20.h,

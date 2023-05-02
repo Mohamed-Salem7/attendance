@@ -6,6 +6,7 @@ import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:line_icons/line_icon.dart';
 
 class MainLayout extends StatelessWidget {
   const MainLayout({Key? key}) : super(key: key);
@@ -25,32 +26,23 @@ class MainLayout extends StatelessWidget {
               backgroundColor: AppColor.primary2Color,
               itemBorderRadius: 20.r,
               borderRadius: 20.r,
-              margin:  EdgeInsets.only(bottom: 8.h,left: 8.w,right: 8.w),
+              margin:  EdgeInsets.only(bottom: 5.h,left: 8.w,right: 8.w),
               onTap: (value) {
                 cubit.changeIndex(value);
               },
               items: [
-                /// Home
                 FloatingNavbarItem(
-                    icon: Icons.home_filled,
+                    icon: LineIcon.home().icon,
                     title: 'Home'
-                    /*selectedColor: AppColor.primaryColor,
-                    unselectedColor: Colors.grey,*/
                 ),
-                /// Records
                 FloatingNavbarItem(
-                    icon: Icons.notifications_none_outlined,
-                    title: 'Notification'
-                    /*selectedColor: AppColor.primaryColor,
-                    unselectedColor: Colors.grey,*/
+                    icon: Icons.notifications_none,
+                    title: 'Notification',
                 ),
-                /// Profile
                 FloatingNavbarItem(
-                    icon: Icons.person,
+                    icon: Icons.settings_outlined,
                   title: 'Setting'
                 ),
-                    /*selectedColor: AppColor.primaryColor,
-                    unselectedColor: Colors.grey),*/
               ],
             ),
           ),
