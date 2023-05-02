@@ -33,6 +33,24 @@ class QrCodeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 30.r,
+                        ),
+                        SizedBox(width: 10.w,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text('Mohamed Salim',style: TextStyle(color: Colors.white),),
+                            Text('Software Engineer',style: TextStyle(color: Colors.white),),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 150.h,
+                    ),
                     Text(
                       languageApp == 'Arabic'
                           ? AppStrings.qrCodeAr

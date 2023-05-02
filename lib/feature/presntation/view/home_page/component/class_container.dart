@@ -28,7 +28,7 @@ class ClassContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             15.r,
           ),
-          color: Colors.grey.shade800,
+          color: AppColor.primary3Color.withOpacity(0.2),
           border: Border.all(color: AppColor.primaryColor, width: 1.5.w),
         ),
         child: Padding(

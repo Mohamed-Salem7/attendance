@@ -22,7 +22,7 @@ class MainLayout extends StatelessWidget {
             body: cubit.screen[cubit.currentIndex],
             bottomNavigationBar: FloatingNavbar(
               currentIndex: cubit.currentIndex,
-              backgroundColor: AppColor.primaryColor,
+              backgroundColor: AppColor.primary2Color,
               itemBorderRadius: 20.r,
               borderRadius: 20.r,
               margin:  EdgeInsets.only(bottom: 8.h,left: 8.w,right: 8.w),

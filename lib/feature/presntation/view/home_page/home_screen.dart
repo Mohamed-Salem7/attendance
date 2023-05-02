@@ -5,6 +5,7 @@ import 'package:attendance_app/feature/presntation/view/home_page/component/clas
 import 'package:attendance_app/feature/presntation/view/home_page/component/container_of_absences.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/component/info_user.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/qr_pages/qr_code_screen.dart';
+import 'package:attendance_app/feature/presntation/view/home_page/scan_qr/scan_qr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -85,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                       name: name[index],
                       attendances: attendances[index],
                       function: () {
-                        Get.to(const QrCodeScreen(),transition: Transition.fadeIn);
+                        Get.to(const ScanQr(),transition: Transition.fadeIn);
                       },
                     );
                   },

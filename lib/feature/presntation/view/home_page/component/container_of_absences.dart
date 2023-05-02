@@ -13,7 +13,7 @@ class ContainerOfAbsences extends StatelessWidget {
       height: 40.h,
       width: 360.w,
       decoration: BoxDecoration(
-        color: Colors.grey.shade800,
+        color: AppColor.primary3Color.withOpacity(0.2),
         border: BorderDirectional(
           start: BorderSide(
             color: AppColor.primaryColor,
