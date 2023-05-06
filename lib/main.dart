@@ -1,6 +1,7 @@
 import 'package:attendance_app/core/function/constant.dart';
 import 'package:attendance_app/core/network/bloc_observer.dart';
 import 'package:attendance_app/core/network/cache_helper.dart';
+import 'package:attendance_app/core/network/dio_helper.dart';
 import 'package:attendance_app/feature/presntation/controllers/Setting_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/auth_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/cubit.dart';
@@ -16,13 +17,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
 
+  DioHelper.init();
+
   Bloc.observer = MyBlocObserver();
 
   if (CacheHelper.getData(key: 'language') != null) {
     languageApp = CacheHelper.getData(key: 'language');
   }
 
-  print(languageApp);
+  if (CacheHelper.getData(key: 'uId') != '') {
+    uId = CacheHelper.getData(key: 'uId');
+  }
+
 
   runApp(const MyApp());
 }

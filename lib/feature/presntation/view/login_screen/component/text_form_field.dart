@@ -6,16 +6,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
+  CustomTextField(
       {Key? key,
       required this.hintText,
       required this.controller,
+        this.keyboardType = TextInputType.text,
       required this.isPassword})
       : super(key: key);
 
   final String hintText;
   final TextEditingController controller;
   final bool isPassword;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class CustomTextField extends StatelessWidget {
             ),
             cursorColor: AppColor.primaryColor,
             onTap: (){},
+            keyboardType: keyboardType,
             obscureText: isPassword ?  cubit.isPasswordVisibility : false,
             decoration: InputDecoration(
                 fillColor: Colors.grey.shade900,

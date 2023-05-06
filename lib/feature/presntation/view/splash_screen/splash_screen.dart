@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:attendance_app/core/function/constant.dart';
 import 'package:attendance_app/feature/presntation/view/login_screen/login_screen.dart';
 import 'package:attendance_app/feature/presntation/view/main_layout/main_layout.dart';
 import 'package:attendance_app/feature/presntation/view/on_boarding/on_boarding.dart';
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() {
-    Get.to(const OnBoarding(),transition: Transition.cupertinoDialog);
+    Get.to(const OnBoarding() != null ? (uId != '' ? const MainLayout(): const LoginScreen()) : const OnBoarding(),transition: Transition.cupertinoDialog);
   }
 
   @override

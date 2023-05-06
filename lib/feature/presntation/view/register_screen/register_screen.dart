@@ -1,4 +1,5 @@
 import 'package:attendance_app/core/function/constant.dart';
+import 'package:attendance_app/core/network/cache_helper.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/controllers/auth_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/auth_cubit/state.dart';
@@ -19,9 +20,11 @@ class RegisterScreen extends StatelessWidget {
     var nameController = TextEditingController();
     var phoneNumberController = TextEditingController();
     var passwordController = TextEditingController();
+
     return BlocConsumer<AuthCubit, AuthState>(
         builder: (context, state) {
           var cubit = AuthCubit.get(context);
+          print(cubit.index);
           return Scaffold(
             backgroundColor: AppColor.primary2Color,
             body: Center(
@@ -36,7 +39,8 @@ class RegisterScreen extends StatelessWidget {
                       Text(
                         'Register Now',
                         style: TextStyle(
-                            fontSize: 24.spMin, fontWeight: FontWeight.bold,
+                          fontSize: 24.spMin,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
@@ -57,6 +61,7 @@ class RegisterScreen extends StatelessWidget {
                         hintText: 'Email',
                         controller: stdNumberController,
                         isPassword: false,
+                        keyboardType: TextInputType.emailAddress,
                       ),
                       SizedBox(
                         height: 10.h,
@@ -73,6 +78,7 @@ class RegisterScreen extends StatelessWidget {
                         hintText: 'Phone Number',
                         controller: phoneNumberController,
                         isPassword: false,
+                        keyboardType: TextInputType.phone,
                       ),
                       SizedBox(
                         height: 10.h,
@@ -81,6 +87,7 @@ class RegisterScreen extends StatelessWidget {
                         hintText: 'Password',
                         controller: passwordController,
                         isPassword: true,
+                        keyboardType: TextInputType.visiblePassword,
                       ),
                       SizedBox(
                         height: 20.h,
@@ -90,36 +97,48 @@ class RegisterScreen extends StatelessWidget {
                           Radio(
                               value: 0,
                               groupValue: cubit.index,
-                              onChanged: (value)
-                              {
+                              onChanged: (value) {
                                 cubit.changeSelectRegister(value);
                               },
                               fillColor: MaterialStateProperty.resolveWith(
                                 (states) => AppColor.primaryColor,
                               )),
-                          const Text('Student',style: TextStyle(color: Colors.white,),),
+                          const Text(
+                            'Student',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                           Radio(
                               value: 1,
                               groupValue: cubit.index,
-                              onChanged: (value)
-                              {
+                              onChanged: (value) {
                                 cubit.changeSelectRegister(value);
                               },
                               fillColor: MaterialStateProperty.resolveWith(
                                 (states) => AppColor.primaryColor,
                               )),
-                          const Text('Teacher',style: TextStyle(color: Colors.white,),),
+                          const Text(
+                            'Teacher',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                           Radio(
                               value: 2,
                               groupValue: cubit.index,
-                              onChanged: (value)
-                              {
+                              onChanged: (value) {
                                 cubit.changeSelectRegister(value);
                               },
                               fillColor: MaterialStateProperty.resolveWith(
                                 (states) => AppColor.primaryColor,
                               )),
-                          const Text('Guardian',style: TextStyle(color: Colors.white,),),
+                          const Text(
+                            'Guardian',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(height: 50.h),
@@ -131,7 +150,18 @@ class RegisterScreen extends StatelessWidget {
                             height: 50.h,
                             child: ElevatedButton(
                               onPressed: () {
-                                navigatorFinished(context, const MainLayout());
+                                cubit.createAccount(
+                                    email: stdNumberController.text,
+                                    name: nameController.text,
+                                    mobile: phoneNumberController.text,
+                                    type: cubit.index == 0 ? '3' : (cubit.index == 1 ? '2' : '1'),
+                                    password: passwordController.text,
+                                );
+
+
+                                //3 student
+                                //2 teacher
+                                //1 Guardian
                               },
                               style: ButtonStyle(
                                   backgroundColor:
@@ -151,7 +181,12 @@ class RegisterScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Already you have an account?',style: TextStyle(color: Colors.white,),),
+                          const Text(
+                            'Already you have an account?',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                           TextButton(
                             onPressed: () {
                               navigatorFinished(context, const LoginScreen());
@@ -172,6 +207,14 @@ class RegisterScreen extends StatelessWidget {
             ),
           );
         },
-        listener: (context, state) {});
+        listener: (context, state)
+        {
+          if(state is SuccessCreateNewUserState)
+          {
+            CacheHelper.saveData(key: 'uId', value: AuthCubit.get(context).uId);
+            navigatorFinished(context,const MainLayout());
+          }
+        }
+    );
   }
 }

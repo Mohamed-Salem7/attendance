@@ -11,7 +11,7 @@ void navigatorFinished(context, widget) => Navigator.pushAndRemoveUntil(
 );
 
 
-
+String uId = '';
 
 
 
