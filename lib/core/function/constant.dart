@@ -1,3 +1,5 @@
+import 'package:attendance_app/model/UserData.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 void navigatorFinished(context, widget) => Navigator.pushAndRemoveUntil(
@@ -11,10 +13,14 @@ void navigatorFinished(context, widget) => Navigator.pushAndRemoveUntil(
 );
 
 
-String uId = '';
+String uIds = '';
 
 
+String image = '';
+PlatformFile? imagePicker;
 
+
+UserData? userData;
 
 
 

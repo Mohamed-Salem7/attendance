@@ -1,5 +1,6 @@
 class AppStrings {
   static const String homeScreenEn = "Home";
+  static const String addCourseEn = "Add Course";
   static const String whenLastTimeEn = "When was the last time you attended the class";
   static const String absencesEn = "Number of Absences";
   static const String classesJoinedEn = "Classes Joined";
@@ -7,6 +8,7 @@ class AppStrings {
 
 
   static const String homeScreenAr = "الرئيسية";
+  static const String addCourseAr = "إضافة كورس";
   static const String whenLastTimeAr = "أخر مرة سجلت حضورك بها في مساق";
   static const String absencesAr = "عدد مرات غيابك";
   static const String classesJoinedAr = "المساقات المنضم لها";

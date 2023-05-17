@@ -59,6 +59,8 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       CustomTextField(
                         hintText: 'Email',
+                        function: (){},
+
                         controller: stdNumberController,
                         isPassword: false,
                         keyboardType: TextInputType.emailAddress,
@@ -69,6 +71,8 @@ class RegisterScreen extends StatelessWidget {
                       CustomTextField(
                         hintText: 'Name',
                         controller: nameController,
+                        function: (){},
+
                         isPassword: false,
                       ),
                       SizedBox(
@@ -78,6 +82,8 @@ class RegisterScreen extends StatelessWidget {
                         hintText: 'Phone Number',
                         controller: phoneNumberController,
                         isPassword: false,
+                        function: (){},
+
                         keyboardType: TextInputType.phone,
                       ),
                       SizedBox(
@@ -88,6 +94,7 @@ class RegisterScreen extends StatelessWidget {
                         controller: passwordController,
                         isPassword: true,
                         keyboardType: TextInputType.visiblePassword,
+                        function: (){},
                       ),
                       SizedBox(
                         height: 20.h,

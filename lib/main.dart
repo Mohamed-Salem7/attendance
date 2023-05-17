@@ -5,8 +5,10 @@ import 'package:attendance_app/core/network/dio_helper.dart';
 import 'package:attendance_app/feature/presntation/controllers/Setting_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/auth_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/cubit.dart';
+import 'package:attendance_app/feature/presntation/view/login_screen/login_screen.dart';
 import 'package:attendance_app/feature/presntation/view/main_layout/main_layout.dart';
 import 'package:attendance_app/feature/presntation/view/splash_screen/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +21,7 @@ void main() async {
 
   DioHelper.init();
 
+  await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
 
   if (CacheHelper.getData(key: 'language') != null) {
@@ -26,7 +29,7 @@ void main() async {
   }
 
   if (CacheHelper.getData(key: 'uId') != '') {
-    uId = CacheHelper.getData(key: 'uId');
+    uIds = CacheHelper.getData(key: 'uId');
   }
 
 
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
-        BlocProvider(create: (context) => MainCubit()),
+        BlocProvider(create: (context) => MainCubit()..getUserData()),
         BlocProvider(create: (context) => SettingCubit()),
       ],
       child: ScreenUtilInit(

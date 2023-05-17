@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() {
-    Get.to(const OnBoarding() != null ? (uId != '' ? const MainLayout(): const LoginScreen()) : const OnBoarding(),transition: Transition.cupertinoDialog);
+    Get.to(const OnBoarding() != null ? (uIds != '' ? const MainLayout(): const LoginScreen()) : const OnBoarding(),transition: Transition.cupertinoDialog);
   }
 
   @override

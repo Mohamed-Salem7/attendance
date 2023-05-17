@@ -26,7 +26,7 @@ class InfoUser extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            languageApp == 'Arabic'? "مرحبا,محمد محمود سالم":'Welcome, Mohamed M Salem',
+            languageApp == 'Arabic'? "مرحبا,${userData!.name}":'Welcome, ${userData!.name}',
             style: TextStyle(
               fontSize: 14.spMin,
               fontWeight: FontWeight.w400,

@@ -53,16 +53,20 @@ class LoginScreen extends StatelessWidget {
                     height: 50.h,
                   ),
                   CustomTextField(
-                    hintText: 'Phone Number',
+                    hintText: 'Email',
                     controller: stdNumberController,
                     isPassword: false,
-                    keyboardType: TextInputType.phone,
+                    function: (){},
+
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(
                     height: 10.h,
                   ),
                   CustomTextField(
                     hintText: 'Password',
+                    function: (){},
+
                     controller: passwordController,
                     isPassword: true,
                     keyboardType: TextInputType.visiblePassword,
@@ -92,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             cubit.loginUser(
-                                mobile: stdNumberController.text,
+                                email: stdNumberController.text,
                                 password: passwordController.text,
                             );
                           },

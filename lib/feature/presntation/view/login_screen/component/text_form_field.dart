@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
       required this.hintText,
       required this.controller,
         this.keyboardType = TextInputType.text,
+        required this.function ,
       required this.isPassword})
       : super(key: key);
 
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool isPassword;
   final TextInputType keyboardType;
+  final Function() function;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class CustomTextField extends StatelessWidget {
               color: AppColor.primaryColor,
             ),
             cursorColor: AppColor.primaryColor,
-            onTap: (){},
+            onTap: function,
             keyboardType: keyboardType,
             obscureText: isPassword ?  cubit.isPasswordVisibility : false,
             decoration: InputDecoration(

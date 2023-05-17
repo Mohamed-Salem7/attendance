@@ -37,12 +37,13 @@ class QrCodeScreen extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 30.r,
+                          backgroundImage: NetworkImage(userData!.avatar!),
                         ),
                         SizedBox(width: 10.w,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text('Mohamed Salim',style: TextStyle(color: Colors.white),),
+                          children:  [
+                            Text('${userData!.name}',style: TextStyle(color: Colors.white),),
                             Text('Software Engineer',style: TextStyle(color: Colors.white),),
                           ],
                         ),
