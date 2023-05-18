@@ -29,4 +29,17 @@ class SuccessGetSectionCourseState extends MainState{}
 
 class ErrorGetSectionCourseState  extends MainState{}
 
+
+class LoadingJoinSectionCourseState extends MainState{}
+
+class SuccessJoinSectionCourseState extends MainState{}
+
+class ErrorJoinSectionCourseState  extends MainState{}
+
+class LoadingGetSectionCourseToStudentState extends MainState{}
+
+class SuccessGetSectionCourseToStudentState extends MainState{}
+
+class ErrorGetSectionCourseToStudentState  extends MainState{}
+
 class HomeScreenState  extends MainState{}

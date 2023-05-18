@@ -15,8 +15,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class QrCodeScreen extends StatelessWidget {
-  const QrCodeScreen({Key? key}) : super(key: key);
+  const QrCodeScreen({Key? key, required this.name}) : super(key: key);
 
+  final String name;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainState>(
@@ -44,7 +45,7 @@ class QrCodeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children:  [
                             Text('${userData!.name}',style: TextStyle(color: Colors.white),),
-                            Text('Software Engineer',style: TextStyle(color: Colors.white),),
+                            Text(name,style: TextStyle(color: Colors.white),),
                           ],
                         ),
                       ],

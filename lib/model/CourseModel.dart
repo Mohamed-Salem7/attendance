@@ -2,6 +2,7 @@ class CourseModel {
   String? courseId;
   String? drName;
   String? lectureDate;
+  List<String>? member;
   String? name;
   String? timingFromLecture;
   String? timingToLecture;
@@ -10,6 +11,7 @@ class CourseModel {
       {this.courseId,
         this.drName,
         this.lectureDate,
+        this.member,
         this.name,
         this.timingFromLecture,
         this.timingToLecture});
@@ -18,6 +20,7 @@ class CourseModel {
     courseId = json['courseId'];
     drName = json['drName'];
     lectureDate = json['lectureDate'];
+    member = json['member'].cast<String>();
     name = json['name'];
     timingFromLecture = json['timingFromLecture'];
     timingToLecture = json['timingToLecture'];
@@ -28,6 +31,7 @@ class CourseModel {
     data['courseId'] = this.courseId;
     data['drName'] = this.drName;
     data['lectureDate'] = this.lectureDate;
+    data['member'] = this.member;
     data['name'] = this.name;
     data['timingFromLecture'] = this.timingFromLecture;
     data['timingToLecture'] = this.timingToLecture;

@@ -8,11 +8,12 @@ class ClassContainer extends StatelessWidget {
       {Key? key,
       required this.title,
       required this.name,
-      required this.function})
+      required this.function, required this.courseId})
       : super(key: key);
 
   final String title;
   final String name;
+  final String courseId;
   final Function() function;
 
   @override
@@ -57,14 +58,14 @@ class ClassContainer extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              // Text(
-              //   languageApp == 'Arabic'? "عدد مرات الحضور : $attendances":'Attendances: $attendances',
-              //   style: TextStyle(
-              //     fontSize: 14.spMin,
-              //     fontWeight: FontWeight.w400,
-              //     color: Colors.white,
-              //   ),
-              // ),
+              Text(
+                courseId,
+                style: TextStyle(
+                  fontSize: 14.spMin,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),
+              ),
             ],
           ),
         ),

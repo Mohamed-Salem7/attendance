@@ -7,6 +7,7 @@ import 'package:attendance_app/feature/presntation/view/home_page/home_screen.da
 import 'package:attendance_app/feature/presntation/view/notification_page/notification_screen.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/setting_screen.dart';
 import 'package:attendance_app/model/CourseModel.dart';
+import 'package:attendance_app/model/GetCourseToStudentModel.dart';
 import 'package:attendance_app/model/UserData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -96,15 +97,78 @@ class MainCubit extends Cubit<MainState> {
     emit(LoadingGetSectionCourseState());
     await FirebaseFirestore.instance.collection('course').get().then((value) {
       listCourseModel = [];
-      value.docs.forEach((element) {
-        if (element.data()['drName'] == userData!.name) {
+      if (userData!.type == '2') {
+        value.docs.forEach((element) {
+          if (element.data()['drName'] == userData!.name) {
+            courseModel = CourseModel.fromJson(element.data());
+            listCourseModel.add(courseModel!);
+          }
+        });
+      }
+      listCourseStudentModel = [];
+      if (userData!.type == '3') {
+        value.docs.forEach((element) {
           courseModel = CourseModel.fromJson(element.data());
-          listCourseModel.add(courseModel!);
-        }
-      });
+          listCourseStudentModel.add(courseModel!);
+        });
+      }
       emit(SuccessGetSectionCourseState());
-    }).catchError((error){
+    }).catchError((error) {
       emit(ErrorGetSectionCourseState());
+    });
+  }
+
+  Future<void> joinToCourse({
+    required String courseId,
+    required String name,
+    required String drName,
+    required List<String> members,
+  }) async {
+    emit(LoadingJoinSectionCourseState());
+    member = members;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uIds)
+        .collection('course')
+        .doc()
+        .set({
+      'name': name,
+      'courseId': courseId,
+      'time joined': DateTime.now().toString(),
+      'drName': drName,
+    }).then((value) {
+      emit(SuccessJoinSectionCourseState());
+    }).catchError((error) {
+      emit(ErrorJoinSectionCourseState());
+    });
+
+    member.add(userData!.email!);
+    await FirebaseFirestore.instance.collection('course').doc(courseId).update({
+      'member': member,
+    }).then((value) {
+      emit(SuccessJoinSectionCourseState());
+    }).catchError((error) {
+      emit(ErrorJoinSectionCourseState());
+    });
+  }
+
+  Future<void> getJoinedClasses() async {
+    emit(LoadingGetSectionCourseToStudentState());
+    studentCourseModel = [];
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uIds)
+        .collection('course')
+        .get()
+        .then((value) {
+          value.docs.forEach((element) {
+            studentCourse = GetCourseToStudentModel.fromJson(element.data());
+            studentCourseModel.add(studentCourse!);
+          });
+          print(studentCourseModel.length);
+          emit(SuccessGetSectionCourseToStudentState());
+    }).catchError((error){
+      emit(ErrorGetSectionCourseToStudentState());
     });
   }
 
