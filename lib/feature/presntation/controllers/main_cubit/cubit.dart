@@ -6,6 +6,7 @@ import 'package:attendance_app/feature/presntation/controllers/main_cubit/state.
 import 'package:attendance_app/feature/presntation/view/home_page/home_screen.dart';
 import 'package:attendance_app/feature/presntation/view/notification_page/notification_screen.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/setting_screen.dart';
+import 'package:attendance_app/model/CourseModel.dart';
 import 'package:attendance_app/model/UserData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -77,20 +78,33 @@ class MainCubit extends Cubit<MainState> {
     required String courseId,
   }) async {
     emit(LoadingAddNewSectionCourseState());
-    await FirebaseFirestore.instance
-        .collection('course')
-        .doc(courseId)
-        .set({
-      'name' : name,
-      'lectureDate' : lectureDate,
-      'timingFromLecture' : timingFromLecture,
-      'timingToLecture' : timingToLecture,
-      'courseId' : courseId,
-      'drName' : userData!.name,
+    await FirebaseFirestore.instance.collection('course').doc(courseId).set({
+      'name': name,
+      'lectureDate': lectureDate,
+      'timingFromLecture': timingFromLecture,
+      'timingToLecture': timingToLecture,
+      'courseId': courseId,
+      'drName': userData!.name,
     }).then((value) {
       emit(SuccessAddNewSectionCourseState());
     }).catchError((e) {
       emit(ErrorAddNewSectionCourseState());
+    });
+  }
+
+  Future<void> getSectionCourse() async {
+    emit(LoadingGetSectionCourseState());
+    await FirebaseFirestore.instance.collection('course').get().then((value) {
+      listCourseModel = [];
+      value.docs.forEach((element) {
+        if (element.data()['drName'] == userData!.name) {
+          courseModel = CourseModel.fromJson(element.data());
+          listCourseModel.add(courseModel!);
+        }
+      });
+      emit(SuccessGetSectionCourseState());
+    }).catchError((error){
+      emit(ErrorGetSectionCourseState());
     });
   }
 

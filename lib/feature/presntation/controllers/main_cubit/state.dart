@@ -23,4 +23,10 @@ class SuccessAddNewSectionCourseState extends MainState{}
 
 class ErrorAddNewSectionCourseState  extends MainState{}
 
+class LoadingGetSectionCourseState extends MainState{}
+
+class SuccessGetSectionCourseState extends MainState{}
+
+class ErrorGetSectionCourseState  extends MainState{}
+
 class HomeScreenState  extends MainState{}

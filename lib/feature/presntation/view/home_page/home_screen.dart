@@ -33,14 +33,17 @@ class HomeScreen extends StatelessWidget {
       'Ibrahim Abu Hieba',
       'Ahmed Mahdi'
     ];
-    List<String> attendances = ['50', '20', '1', '24'];
 
     MainCubit.get(context).getUserData();
+    MainCubit.get(context).getSectionCourse();
     return BuildCondition(
       condition: userData != null,
-      builder: (context,) => Directionality(
+      builder: (
+        context,
+      ) =>
+          Directionality(
         textDirection:
-        languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
+            languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
         child: Scaffold(
           backgroundColor: AppColor.primary2Color,
           body: Padding(
@@ -65,22 +68,13 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    if(userData!.type == "2")
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.post_add,
-                          color: Colors.white,
-                          size: 30.spMin,
-                        ),
-                      ),
-                    if(userData!.type == "2")
+                    if (userData!.type == "2")
                       IconButton(
                         onPressed: () {
                           Get.to(const AddCourse());
                         },
                         icon: Icon(
-                          Icons.add_box_outlined,
+                          Icons.post_add,
                           color: Colors.white,
                           size: 30.spMin,
                         ),
@@ -94,14 +88,26 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                const ContainerOfAbsences(),
+                if (userData!.type == "3") const ContainerOfAbsences(),
                 SizedBox(
                   height: 20.h,
                 ),
+                if(userData!.type =="3")
                 Text(
                   languageApp == 'Arabic'
                       ? AppStrings.classesJoinedAr
                       : AppStrings.classesJoinedEn,
+                  style: TextStyle(
+                    fontSize: 18.spMin,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                if(userData!.type =="2")
+                Text(
+                  languageApp == 'Arabic'
+                      ? "الكلاسات الخاصة بك"
+                      : "your classes",
                   style: TextStyle(
                     fontSize: 18.spMin,
                     fontWeight: FontWeight.bold,
@@ -116,18 +122,21 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 10.h,
                       childAspectRatio: 1,
                     ),
-                    itemCount: 4,
+                    itemCount: listCourseModel.length,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return ClassContainer(
-                        title: title[index],
-                        name: name[index],
-                        attendances: attendances[index],
+                        title: listCourseModel[index].name!,
+                        name: listCourseModel[index].drName!,
                         function: () {
                           if (userData!.type == "3")
-                            Get.to(const QrCodeScreen(),);
+                            Get.to(
+                              const QrCodeScreen(),
+                            );
                           if (userData!.type == "2")
-                            Get.to(const ScanQr(),);
+                            Get.to(
+                              const ScanQr(),
+                            );
                         },
                       );
                     },
@@ -138,7 +147,15 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      fallback: (context,) => Builder(builder: (context) {MainCubit.get(context).stateHome(); return SizedBox();},),
+      fallback: (
+        context,
+      ) =>
+          Builder(
+        builder: (context) {
+          MainCubit.get(context).stateHome();
+          return SizedBox();
+        },
+      ),
     );
   }
 }

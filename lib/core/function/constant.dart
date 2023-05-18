@@ -1,3 +1,4 @@
+import 'package:attendance_app/model/CourseModel.dart';
 import 'package:attendance_app/model/UserData.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,8 @@ String uIds = '';
 String image = '';
 PlatformFile? imagePicker;
 
+List<CourseModel> listCourseModel = [];
+CourseModel? courseModel;
 
 UserData? userData;
 
