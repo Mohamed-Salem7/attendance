@@ -42,4 +42,11 @@ class SuccessGetSectionCourseToStudentState extends MainState{}
 
 class ErrorGetSectionCourseToStudentState  extends MainState{}
 
+
+class LoadingRecordAttendanceStudentState extends MainState{}
+
+class SuccessRecordAttendanceStudentState extends MainState{}
+
+class ErrorRecordAttendanceStudentState  extends MainState{}
+
 class HomeScreenState  extends MainState{}

@@ -31,6 +31,12 @@ GetCourseToStudentModel? studentCourse;
 
 List<String> member = [];
 
+
+
+String qrCode = '';
+List<String> qrCodeSplit = [];
+String uIdStudent = '';
+
 UserData? userData;
 
 

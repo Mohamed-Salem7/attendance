@@ -155,7 +155,6 @@ class MainCubit extends Cubit<MainState> {
       emit(ErrorJoinSectionCourseState());
     });
 
-
     await FirebaseFirestore.instance
         .collection('course')
         .doc(courseId)
@@ -181,14 +180,39 @@ class MainCubit extends Cubit<MainState> {
         .collection('course')
         .get()
         .then((value) {
-          value.docs.forEach((element) {
-            studentCourse = GetCourseToStudentModel.fromJson(element.data());
-            studentCourseModel.add(studentCourse!);
-          });
-          print(studentCourseModel.length);
-          emit(SuccessGetSectionCourseToStudentState());
-    }).catchError((error){
+      value.docs.forEach((element) {
+        studentCourse = GetCourseToStudentModel.fromJson(element.data());
+        studentCourseModel.add(studentCourse!);
+      });
+      print(studentCourseModel.length);
+      emit(SuccessGetSectionCourseToStudentState());
+    }).catchError((error) {
       emit(ErrorGetSectionCourseToStudentState());
+    });
+  }
+
+  Future<void> recordAttendance({
+    required String courseId,
+    required String uIds,
+    required String data,
+  }) async {
+    emit(LoadingRecordAttendanceStudentState());
+    await FirebaseFirestore.instance
+        .collection('course')
+        .doc(courseId)
+        .collection('attendance')
+        .doc(uIds)
+        .collection('recordAttendance')
+        .doc()
+        .set({
+      'data':data,
+      'time' : DateTime.now().toString(),
+      'courseID' : courseId,
+    })
+        .then((value) {
+      emit(SuccessRecordAttendanceStudentState());
+    }).catchError((error) {
+      emit(ErrorRecordAttendanceStudentState());
     });
   }
 
