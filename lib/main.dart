@@ -28,7 +28,7 @@ void main() async {
     languageApp = CacheHelper.getData(key: 'language');
   }
 
-  if (CacheHelper.getData(key: 'uId') != '') {
+  if (CacheHelper.getData(key: 'uId') != null) {
     uIds = CacheHelper.getData(key: 'uId');
   }
 

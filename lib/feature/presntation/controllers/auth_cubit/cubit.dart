@@ -128,22 +128,39 @@ class AuthCubit extends Cubit<AuthState> {
     }).catchError((e) {
       emit(ErrorUpdateProfileUserState());
     });
+
+    for(int i = 0; i < listCourseStudentModel.length ; i++)
+    {
+      await FirebaseFirestore.instance
+          .collection('course')
+          .doc(listCourseStudentModel[i].courseId)
+          .collection('attendance')
+          .doc(uIds)
+          .update({
+        'name': name,
+        'avatar': userData!.avatar,
+      }).then((value) {
+        emit(SuccessUpdateProfileUserState());
+      }).catchError((e) {
+        emit(ErrorUpdateProfileUserState());
+      });
+    }
   }
 
-
-
-
   Future<String> _storeFileToFirebase(String path, File file) async {
-    UploadTask uploadTask = FirebaseStorage.instance.ref().child(path).putFile(file);
+    UploadTask uploadTask =
+        FirebaseStorage.instance.ref().child(path).putFile(file);
     TaskSnapshot snap = await uploadTask;
     String downloadUrl = await snap.ref.getDownloadURL();
     return downloadUrl;
   }
+
   Future<void> uploadAvatar() async {
     emit(LoadingUploadAvatarUserState());
-    String photoUrl = await _storeFileToFirebase('file/${imagePicker!.name}', File(imagePicker!.path!));
-      emit(SuccessUploadAvatarUserState());
-      await FirebaseFirestore.instance.collection('users').doc(uIds).update({
+    String photoUrl = await _storeFileToFirebase(
+        'file/${imagePicker!.name}', File(imagePicker!.path!));
+    emit(SuccessUploadAvatarUserState());
+    await FirebaseFirestore.instance.collection('users').doc(uIds).update({
       'avatar': photoUrl,
     });
   }

@@ -54,7 +54,9 @@ class MainCubit extends Cubit<MainState> {
       isSelect = false;
     }
     qrCode = String.fromCharCodes(codeUnits);
-    return String.fromCharCodes(codeUnits);
+    qrCode += ',$uIds';
+    print(qrCode);
+    return qrCode;
   }
 
   Future<void> getUserData() async {
@@ -122,6 +124,8 @@ class MainCubit extends Cubit<MainState> {
     required String courseId,
     required String name,
     required String drName,
+    required String nameStudent,
+    required String avatarStudent,
     required List<String> members,
   }) async {
     emit(LoadingJoinSectionCourseState());
@@ -145,6 +149,22 @@ class MainCubit extends Cubit<MainState> {
     member.add(userData!.email!);
     await FirebaseFirestore.instance.collection('course').doc(courseId).update({
       'member': member,
+    }).then((value) {
+      emit(SuccessJoinSectionCourseState());
+    }).catchError((error) {
+      emit(ErrorJoinSectionCourseState());
+    });
+
+
+    await FirebaseFirestore.instance
+        .collection('course')
+        .doc(courseId)
+        .collection('attendance')
+        .doc(uIds)
+        .set({
+      'name': nameStudent,
+      'avatar': avatarStudent,
+      'uId': uIds,
     }).then((value) {
       emit(SuccessJoinSectionCourseState());
     }).catchError((error) {

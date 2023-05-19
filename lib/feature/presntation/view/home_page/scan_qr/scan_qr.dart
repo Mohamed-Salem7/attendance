@@ -33,11 +33,14 @@ class _ScanQrState extends State<ScanQr> {
 
   @override
   Widget build(BuildContext context) {
+    String qrCode = result!.code!;
+    List<String> qrCodeSplit = qrCode.split(',');
+    String uIdStudent = qrCodeSplit[1];
     return Scaffold(
       backgroundColor: AppColor.primary2Color,
       appBar: AppBar(
         backgroundColor: AppColor.primary2Color,
-        title: Text('Scan Qr Code'),
+        title: const Text('Scan Qr Code'),
       ),
       body: Column(
         children: <Widget>[
@@ -91,24 +94,27 @@ class _ScanQrState extends State<ScanQr> {
                         color: Colors.white,),
                     ),
                   ),
+                  PositionedDirectional(
+                    start: 80.w,
+                    bottom: 20.h,
+                    child: IconButton(
+                      onPressed: ()
+                      async {
+
+                      },
+                      icon:Container(
+                        height: 30.h,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(10.r)
+                        ),
+                        child: Icon(Icons.done,size: 30.spMin,
+                          color: Colors.white,),
+                      ),
+                    ),
+                  ),
                 ],
               )),
-          Expanded(
-            flex: 1,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  if (result != null)
-                    Text(
-                        'Barcode Type: ${describeEnum(result!.format)}   Data: {${result!.code}}')
-                  else
-                    const Text('Scan a code'),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );

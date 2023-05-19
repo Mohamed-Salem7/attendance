@@ -1,6 +1,6 @@
 import 'package:attendance_app/core/function/constant.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
-import 'package:attendance_app/feature/presntation/view/home_page/show_course/compnent/courser.dart';
+import 'package:attendance_app/feature/presntation/view/home_page/show_course/compnent/course.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/component/coustem_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
