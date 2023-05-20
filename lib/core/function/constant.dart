@@ -1,3 +1,4 @@
+import 'package:attendance_app/model/AttendanceModel.dart';
 import 'package:attendance_app/model/CourseModel.dart';
 import 'package:attendance_app/model/GetCourseToStudentModel.dart';
 import 'package:attendance_app/model/UserData.dart';
@@ -39,7 +40,12 @@ String uIdStudent = '';
 
 UserData? userData;
 
+AttendanceModel? attendanceModel;
 
+List<AttendanceModel> listAttendanceModel = [];
+
+List<TextDirection> textDirection =
+[TextDirection.rtl,TextDirection.ltr];
 
 
 bool isRegenerate = false;

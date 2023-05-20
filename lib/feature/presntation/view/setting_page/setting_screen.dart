@@ -141,7 +141,10 @@ class SettingScreen extends StatelessWidget {
                       icon: LineIcon.alternateSignOut().icon!,
                       isLanguage: false,
                       color: Colors.red,
-                      function: () {},
+                      function: ()
+                      {
+                        SettingCubit.get(context).signOut(context);
+                      },
                     ),
                   ],
                 ),

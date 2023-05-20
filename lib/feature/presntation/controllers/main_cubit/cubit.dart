@@ -4,8 +4,9 @@ import 'package:attendance_app/core/function/constant.dart';
 import 'package:attendance_app/core/network/cache_helper.dart';
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/state.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/home_screen.dart';
-import 'package:attendance_app/feature/presntation/view/notification_page/notification_screen.dart';
+import 'package:attendance_app/feature/presntation/view/recordAttendance_page/recordAttendance_screen.dart';
 import 'package:attendance_app/feature/presntation/view/setting_page/setting_screen.dart';
+import 'package:attendance_app/model/AttendanceModel.dart';
 import 'package:attendance_app/model/CourseModel.dart';
 import 'package:attendance_app/model/GetCourseToStudentModel.dart';
 import 'package:attendance_app/model/UserData.dart';
@@ -13,6 +14,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(InitMainState());
@@ -28,7 +30,7 @@ class MainCubit extends Cubit<MainState> {
 
   List<Widget> screen = [
     const HomeScreen(),
-    const NotificationScreen(),
+    const RecordAttendanceScreen(),
     const SettingScreen(),
   ];
 
@@ -47,8 +49,8 @@ class MainCubit extends Cubit<MainState> {
     var rand = Random();
     var codeUnits = List.generate(
         length,
-        (index) =>
-            rand.nextInt(26) + 97); //// Generates a random lowercase letter
+            (index) =>
+        rand.nextInt(26) + 97); //// Generates a random lowercase letter
     if (isSelect) {
       emit(SuccessGenerateQrCodeState());
       isSelect = false;
@@ -205,9 +207,9 @@ class MainCubit extends Cubit<MainState> {
         .collection('recordAttendance')
         .doc()
         .set({
-      'data':data,
-      'time' : DateTime.now().toString(),
-      'courseID' : courseId,
+      'data': data,
+      'time': DateTime.now().toString(),
+      'courseID': courseId,
     })
         .then((value) {
       emit(SuccessRecordAttendanceStudentState());
@@ -216,7 +218,36 @@ class MainCubit extends Cubit<MainState> {
     });
   }
 
-  void stateHome() {
-    emit(HomeScreenState());
+  Future<void> getAttendanceStudent({
+    required String courseId
+  }) async {
+    emit(LoadingGetRecordAttendanceStudentState());
+    await FirebaseFirestore.instance.collection('course')
+        .doc(courseId)
+        .collection('attendance')
+        .doc(uIds)
+        .collection('recordAttendance')
+        .get()
+        .then((value) {
+          listAttendanceModel = [];
+          value.docs.forEach((element) {
+            attendanceModel = AttendanceModel.fromJson(element.data());
+            listAttendanceModel.add(attendanceModel!);
+          });
+          emit(SuccessGetRecordAttendanceStudentState());
+    }).catchError((error){
+      emit(ErrorGetRecordAttendanceStudentState());
+    });
+
   }
+  String time = '';
+  void getTime()
+  {
+    emit(LoadingChangeTimeInHomeState());
+    DateTime dataTime = DateTime.now();
+    time = DateFormat.jm().format(dataTime);
+    emit(SuccessChangeTimeInHomeState());
+  }
+
+
 }

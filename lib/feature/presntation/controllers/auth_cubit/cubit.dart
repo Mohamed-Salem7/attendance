@@ -70,6 +70,7 @@ class AuthCubit extends Cubit<AuthState> {
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) async {
       uId = email;
+      uIds =email;
       await sendDataUserToFirebase(
           email: email, name: name, mobile: mobile, type: type);
 
@@ -109,6 +110,7 @@ class AuthCubit extends Cubit<AuthState> {
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
       uId = email;
+      uIds = email;
       emit(SuccessLoginUserState());
     }).catchError((e) {
       emit(ErrorLoginUserState());

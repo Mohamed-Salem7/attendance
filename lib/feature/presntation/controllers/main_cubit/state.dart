@@ -49,4 +49,13 @@ class SuccessRecordAttendanceStudentState extends MainState{}
 
 class ErrorRecordAttendanceStudentState  extends MainState{}
 
-class HomeScreenState  extends MainState{}
+
+class LoadingGetRecordAttendanceStudentState extends MainState{}
+
+class SuccessGetRecordAttendanceStudentState extends MainState{}
+
+class ErrorGetRecordAttendanceStudentState  extends MainState{}
+
+class LoadingChangeTimeInHomeState  extends MainState{}
+
+class SuccessChangeTimeInHomeState  extends MainState{}

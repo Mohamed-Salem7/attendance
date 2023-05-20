@@ -8,14 +8,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_icons/line_icon.dart';
 
+
 class MainLayout extends StatelessWidget {
+
   const MainLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return BlocConsumer<MainCubit, MainState>(
       builder: (context, state) {
+
         var cubit = MainCubit.get(context);
+
         return Directionality(
           textDirection: languageApp == 'Arabic' ? TextDirection.rtl : TextDirection.ltr,
           child: Scaffold(
@@ -33,15 +38,15 @@ class MainLayout extends StatelessWidget {
               items: [
                 FloatingNavbarItem(
                     icon: LineIcon.home().icon,
-                    title: 'Home'
+                    title: languageApp != 'Arabic' ? 'Home' : "الرئيسية"
                 ),
                 FloatingNavbarItem(
-                    icon: Icons.notifications_none,
-                    title: 'Notification',
+                    icon: LineIcon.file().icon,
+                    title: languageApp != 'Arabic' ? 'Attendance Record' : "سجل الحضور",
                 ),
                 FloatingNavbarItem(
                     icon: Icons.settings_outlined,
-                  title: 'Setting'
+                  title: languageApp != 'Arabic' ? 'Setting' : "الإعدادات"
                 ),
               ],
             ),

@@ -5,6 +5,7 @@ import 'package:attendance_app/core/function/constant.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/cubit.dart';
 import 'package:attendance_app/feature/presntation/controllers/main_cubit/state.dart';
+import 'package:attendance_app/feature/presntation/view/main_layout/main_layout.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,108 +43,111 @@ class _ScanQrState extends State<ScanQr> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit,MainState>(
-        builder: (context, state) {
-          return Scaffold(
-            backgroundColor: AppColor.primary2Color,
-            appBar: AppBar(
-              backgroundColor: AppColor.primary2Color,
-              title: const Text('Scan Qr Code'),
-            ),
-            body: Column(
-              children: <Widget>[
-                Expanded(
-                    flex: 4,
-                    child: Stack(
-                      children: [
-                        _buildQrView(context),
-                        PositionedDirectional(
-                          end: 10.w,
-                          bottom: 20.h,
-                          child: IconButton(
-                              onPressed: () async {
-                                await controller?.toggleFlash();
-                                setState(() {});
-                              },
-                              icon: FutureBuilder(
-                                future: controller?.getFlashStatus(),
-                                builder: (context, snapshot) {
-                                  return Icon(
-                                    snapshot.data == false
-                                        ? Icons.flash_off
-                                        : Icons.flash_on,
-                                    size: 30.spMin,
-                                    color: Colors.white,
-                                  );
-                                },
-                              )),
-                        ),
-                        PositionedDirectional(
-                          start: 10.w,
-                          bottom: 20.h,
-                          child: IconButton(
-                            onPressed: () async {
-                              await controller?.pauseCamera();
-                            },
-                            icon: LineIcon.pause(
-                              size: 30.spMin,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        PositionedDirectional(
-                          start: 40.w,
-                          bottom: 20.h,
-                          child: IconButton(
-                            onPressed: () async {
-                              await controller?.resumeCamera();
-                            },
-                            icon: LineIcon.play(
-                              size: 30.spMin,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        PositionedDirectional(
-                          start: 80.w,
-                          bottom: 20.h,
-                          child: IconButton(
-                            onPressed: () async {
-                                if (studentCourseModel.contains(widget.courseId)) {
-                                  MainCubit.get(context).recordAttendance(
-                                    courseId: widget.courseId,
-                                    uIds: uIdStudent,
-                                    data: qrCode,
-                                  );
-                                } else {
-
-                                }
-                            },
-                            icon: Container(
-                              height: 30.h,
-                              decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              child: Icon(
-                                Icons.done,
+    return BlocConsumer<MainCubit, MainState>(builder: (context, state) {
+      return Scaffold(
+        backgroundColor: AppColor.primary2Color,
+        appBar: AppBar(
+          backgroundColor: AppColor.primary2Color,
+          title: const Text('Scan Qr Code'),
+          leading: IconButton(
+              onPressed: () {
+                navigatorFinished(context, const MainLayout());
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              )),
+        ),
+        body: Column(
+          children: <Widget>[
+            Expanded(
+                flex: 4,
+                child: Stack(
+                  children: [
+                    _buildQrView(context),
+                    PositionedDirectional(
+                      end: 10.w,
+                      bottom: 20.h,
+                      child: IconButton(
+                          onPressed: () async {
+                            await controller?.toggleFlash();
+                            setState(() {});
+                          },
+                          icon: FutureBuilder(
+                            future: controller?.getFlashStatus(),
+                            builder: (context, snapshot) {
+                              return Icon(
+                                snapshot.data == false
+                                    ? Icons.flash_off
+                                    : Icons.flash_on,
                                 size: 30.spMin,
                                 color: Colors.white,
-                              ),
-                            ),
+                              );
+                            },
+                          )),
+                    ),
+                    PositionedDirectional(
+                      start: 10.w,
+                      bottom: 20.h,
+                      child: IconButton(
+                        onPressed: () async {
+                          await controller?.pauseCamera();
+                        },
+                        icon: LineIcon.pause(
+                          size: 30.spMin,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    PositionedDirectional(
+                      start: 40.w,
+                      bottom: 20.h,
+                      child: IconButton(
+                        onPressed: () async {
+                          await controller?.resumeCamera();
+                        },
+                        icon: LineIcon.play(
+                          size: 30.spMin,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    PositionedDirectional(
+                      start: 80.w,
+                      bottom: 20.h,
+                      child: IconButton(
+                        onPressed: () async {
+                          if (studentCourseModel.contains(widget.courseId)) {
+                            MainCubit.get(context).recordAttendance(
+                              courseId: widget.courseId,
+                              uIds: uIdStudent,
+                              data: qrCode,
+                            );
+                          } else {}
+                        },
+                        icon: Container(
+                          height: 30.h,
+                          decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Icon(
+                            Icons.done,
+                            size: 30.spMin,
+                            color: Colors.white,
                           ),
                         ),
-                      ],
-                    )),
-              ],
-            ),
-          );
-        },
-        listener: (context, state) {
-          if(state is SuccessRecordAttendanceStudentState){
-            Navigator.pop(context);
-          }
-        }
-    );
+                      ),
+                    ),
+                  ],
+                )),
+          ],
+        ),
+      );
+    }, listener: (context, state) {
+      if (state is SuccessRecordAttendanceStudentState) {
+        Navigator.pop(context);
+      }
+    });
   }
 
   Widget _buildQrView(BuildContext context) {

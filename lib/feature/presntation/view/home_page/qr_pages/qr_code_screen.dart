@@ -9,6 +9,7 @@ import 'package:attendance_app/feature/presntation/view/home_page/qr_pages/compo
 import 'package:attendance_app/feature/presntation/view/home_page/qr_pages/component/regenerate_container.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/qr_pages/component/regenerate_timer.dart';
 import 'package:attendance_app/feature/presntation/view/home_page/qr_pages/component/timer_qr.dart';
+import 'package:attendance_app/feature/presntation/view/main_layout/main_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class QrCodeScreen extends StatelessWidget {
   const QrCodeScreen({Key? key, required this.name}) : super(key: key);
 
   final String name;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit, MainState>(
@@ -36,16 +38,33 @@ class QrCodeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
+                        IconButton(
+                          onPressed: () {
+                            navigatorFinished(context, const MainLayout());
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                          ),
+                        ),
                         CircleAvatar(
                           radius: 30.r,
                           backgroundImage: NetworkImage(userData!.avatar!),
                         ),
-                        SizedBox(width: 10.w,),
+                        SizedBox(
+                          width: 10.w,
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            Text('${userData!.name}',style: TextStyle(color: Colors.white),),
-                            Text(name,style: TextStyle(color: Colors.white),),
+                          children: [
+                            Text(
+                              '${userData!.name}',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              name,
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ],
                         ),
                       ],
@@ -81,8 +100,7 @@ class QrCodeScreen extends StatelessWidget {
                         ),
                       ),
                     SizedBox(height: 50.h),
-                    if (!cubit.isRegenerate)
-                     const RegenerateContainer(),
+                    if (!cubit.isRegenerate) const RegenerateContainer(),
                     if (cubit.isRegenerate) RegenerateButton(cubit: cubit),
                   ],
                 ),

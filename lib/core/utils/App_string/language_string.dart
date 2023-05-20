@@ -1,7 +1,7 @@
 class AppStrings {
   static const String homeScreenEn = "Home";
   static const String addCourseEn = "Add Course";
-  static const String whenLastTimeEn = "When was the last time you attended the class";
+  static const String whenLastTimeEn = "When was the last seen you in app";
   static const String absencesEn = "Number of Absences";
   static const String classesJoinedEn = "Classes Joined";
   static const String attendancesEn = "Attendances: ";
@@ -9,14 +9,14 @@ class AppStrings {
 
   static const String homeScreenAr = "الرئيسية";
   static const String addCourseAr = "إضافة كورس";
-  static const String whenLastTimeAr = "أخر مرة سجلت حضورك بها في مساق";
+  static const String whenLastTimeAr = "أخر مرة تواجدت في التطبيق";
   static const String absencesAr = "عدد مرات غيابك";
   static const String classesJoinedAr = "المساقات المنضم لها";
   static const String attendancesAR = "حضورك: ";
 
 
-  static const String notificationScreenEn = "Notification";
-  static const String notificationScreenAr = "الإشعارات";
+  static const String notificationScreenEn = "Attendance Record";
+  static const String notificationScreenAr = "سجل الحضور";
 
 
 
