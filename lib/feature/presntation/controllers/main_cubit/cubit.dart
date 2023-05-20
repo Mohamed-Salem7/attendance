@@ -9,6 +9,7 @@ import 'package:attendance_app/feature/presntation/view/setting_page/setting_scr
 import 'package:attendance_app/model/AttendanceModel.dart';
 import 'package:attendance_app/model/CourseModel.dart';
 import 'package:attendance_app/model/GetCourseToStudentModel.dart';
+import 'package:attendance_app/model/StudentCourseModel.dart';
 import 'package:attendance_app/model/UserData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -250,4 +251,26 @@ class MainCubit extends Cubit<MainState> {
   }
 
 
+  
+  Future<void> getStudentsCourse({
+  required String courseId
+})
+  async{
+    emit(LoadingGetStudentsCourseState());
+    await FirebaseFirestore.instance
+        .collection('course')
+        .doc(courseId)
+        .collection('attendance')
+        .get()
+        .then((value) {
+          listStudentsCourse = [];
+          value.docs.forEach((element) {
+            studentsCourse = StudentCourseModel.fromJson(element.data());
+            listStudentsCourse.add(studentsCourse!);
+          });
+          emit(SuccessGetStudentsCourseState());
+    }).catchError((error){
+      emit(ErrorGetStudentsCourseState());
+    });
+  }
 }

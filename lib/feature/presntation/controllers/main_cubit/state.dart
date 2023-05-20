@@ -56,6 +56,12 @@ class SuccessGetRecordAttendanceStudentState extends MainState{}
 
 class ErrorGetRecordAttendanceStudentState  extends MainState{}
 
+class LoadingGetStudentsCourseState extends MainState{}
+
+class SuccessGetStudentsCourseState extends MainState{}
+
+class ErrorGetStudentsCourseState  extends MainState{}
+
 class LoadingChangeTimeInHomeState  extends MainState{}
 
 class SuccessChangeTimeInHomeState  extends MainState{}

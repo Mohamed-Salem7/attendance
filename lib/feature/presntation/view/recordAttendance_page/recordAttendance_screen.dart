@@ -3,6 +3,7 @@ import 'package:attendance_app/core/utils/App_string/language_string.dart';
 import 'package:attendance_app/core/utils/theme/colors.dart';
 import 'package:attendance_app/feature/presntation/view/recordAttendance_page/attendanceForCourse_page/attendanceForCourse.dart';
 import 'package:attendance_app/feature/presntation/view/recordAttendance_page/component/body_recordAttendance.dart';
+import 'package:attendance_app/feature/presntation/view/recordAttendance_page/student_of_course/student_of_course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -44,17 +45,31 @@ class RecordAttendanceScreen extends StatelessWidget {
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) => BodyAttendanceRecord(
-                    courseId: studentCourseModel[index].courseId!,
-                    nameCourse: studentCourseModel[index].name!,
-                    function: ()
-                    {
-                      Get.to(AttendanceForCourse(courseId: studentCourseModel[index].courseId!,));
+                    courseId: userData!.type == '3'
+                        ? studentCourseModel[index].courseId!
+                        : listCourseModel[index].courseId!,
+                    nameCourse: userData!.type == '3'
+                        ? studentCourseModel[index].name!
+                        : listCourseModel[index].name!,
+                    function: () {
+                      if (userData!.type == '3') {
+                        Get.to(AttendanceForCourse(
+                          courseId: studentCourseModel[index].courseId!,
+                        ));
+                      }if(userData!.type == '2')
+                      {
+                        Get.to(StudentOfCourse(
+                          courseId: listCourseModel[index].courseId!,
+                        ));
+                      }
                     },
                   ),
                   separatorBuilder: (context, index) => SizedBox(
                     height: 15.h,
                   ),
-                  itemCount: studentCourseModel.length,
+                  itemCount: userData!.type == '3'
+                      ? studentCourseModel.length
+                      : listCourseModel.length,
                 ),
               ),
             ],

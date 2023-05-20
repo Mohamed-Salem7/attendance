@@ -1,6 +1,7 @@
 import 'package:attendance_app/model/AttendanceModel.dart';
 import 'package:attendance_app/model/CourseModel.dart';
 import 'package:attendance_app/model/GetCourseToStudentModel.dart';
+import 'package:attendance_app/model/StudentCourseModel.dart';
 import 'package:attendance_app/model/UserData.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,10 @@ UserData? userData;
 AttendanceModel? attendanceModel;
 
 List<AttendanceModel> listAttendanceModel = [];
+
+
+StudentCourseModel? studentsCourse;
+List<StudentCourseModel> listStudentsCourse = [];
 
 List<TextDirection> textDirection =
 [TextDirection.rtl,TextDirection.ltr];
