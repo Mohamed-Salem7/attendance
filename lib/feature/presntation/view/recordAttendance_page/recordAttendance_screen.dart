@@ -55,6 +55,7 @@ class RecordAttendanceScreen extends StatelessWidget {
                       if (userData!.type == '3') {
                         Get.to(AttendanceForCourse(
                           courseId: studentCourseModel[index].courseId!,
+                          isTeacher: false,
                         ));
                       }if(userData!.type == '2')
                       {

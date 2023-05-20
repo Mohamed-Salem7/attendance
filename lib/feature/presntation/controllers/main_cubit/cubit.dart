@@ -50,8 +50,8 @@ class MainCubit extends Cubit<MainState> {
     var rand = Random();
     var codeUnits = List.generate(
         length,
-            (index) =>
-        rand.nextInt(26) + 97); //// Generates a random lowercase letter
+        (index) =>
+            rand.nextInt(26) + 97); //// Generates a random lowercase letter
     if (isSelect) {
       emit(SuccessGenerateQrCodeState());
       isSelect = false;
@@ -211,51 +211,44 @@ class MainCubit extends Cubit<MainState> {
       'data': data,
       'time': DateTime.now().toString(),
       'courseID': courseId,
-    })
-        .then((value) {
+    }).then((value) {
       emit(SuccessRecordAttendanceStudentState());
     }).catchError((error) {
       emit(ErrorRecordAttendanceStudentState());
     });
   }
 
-  Future<void> getAttendanceStudent({
-    required String courseId
-  }) async {
+  Future<void> getAttendanceStudent({required String courseId}) async {
     emit(LoadingGetRecordAttendanceStudentState());
-    await FirebaseFirestore.instance.collection('course')
+    await FirebaseFirestore.instance
+        .collection('course')
         .doc(courseId)
         .collection('attendance')
         .doc(uIds)
         .collection('recordAttendance')
         .get()
         .then((value) {
-          listAttendanceModel = [];
-          value.docs.forEach((element) {
-            attendanceModel = AttendanceModel.fromJson(element.data());
-            listAttendanceModel.add(attendanceModel!);
-          });
-          emit(SuccessGetRecordAttendanceStudentState());
-    }).catchError((error){
+      listAttendanceModel = [];
+      value.docs.forEach((element) {
+        attendanceModel = AttendanceModel.fromJson(element.data());
+        listAttendanceModel.add(attendanceModel!);
+      });
+      emit(SuccessGetRecordAttendanceStudentState());
+    }).catchError((error) {
       emit(ErrorGetRecordAttendanceStudentState());
     });
-
   }
+
   String time = '';
-  void getTime()
-  {
+
+  void getTime() {
     emit(LoadingChangeTimeInHomeState());
     DateTime dataTime = DateTime.now();
     time = DateFormat.jm().format(dataTime);
     emit(SuccessChangeTimeInHomeState());
   }
 
-
-  
-  Future<void> getStudentsCourse({
-  required String courseId
-})
-  async{
+  Future<void> getStudentsCourse({required String courseId}) async {
     emit(LoadingGetStudentsCourseState());
     await FirebaseFirestore.instance
         .collection('course')
@@ -263,14 +256,38 @@ class MainCubit extends Cubit<MainState> {
         .collection('attendance')
         .get()
         .then((value) {
-          listStudentsCourse = [];
-          value.docs.forEach((element) {
-            studentsCourse = StudentCourseModel.fromJson(element.data());
-            listStudentsCourse.add(studentsCourse!);
-          });
-          emit(SuccessGetStudentsCourseState());
-    }).catchError((error){
+      listStudentsCourse = [];
+      value.docs.forEach((element) {
+        studentsCourse = StudentCourseModel.fromJson(element.data());
+        listStudentsCourse.add(studentsCourse!);
+      });
+      emit(SuccessGetStudentsCourseState());
+    }).catchError((error) {
       emit(ErrorGetStudentsCourseState());
+    });
+  }
+
+  Future<void> getAttendanceStudentForTeacher({
+    required String courseId,
+    required String uId,
+  }) async {
+    emit(LoadingGetRecordAttendanceStudentState());
+    await FirebaseFirestore.instance
+        .collection('course')
+        .doc(courseId)
+        .collection('attendance')
+        .doc(uId)
+        .collection('recordAttendance')
+        .get()
+        .then((value) {
+      listAttendanceModel = [];
+      value.docs.forEach((element) {
+        attendanceModel = AttendanceModel.fromJson(element.data());
+        listAttendanceModel.add(attendanceModel!);
+      });
+      emit(SuccessGetRecordAttendanceStudentState());
+    }).catchError((error) {
+      emit(ErrorGetRecordAttendanceStudentState());
     });
   }
 }

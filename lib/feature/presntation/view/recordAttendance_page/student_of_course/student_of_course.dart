@@ -56,7 +56,7 @@ class StudentOfCourse extends StatelessWidget {
                             avatar: listStudentsCourse[index].avatar!,
                             nameStudent: listStudentsCourse[index].name!,
                             function: () {
-                              //Get.to(AttendanceForCourse(courseId: userData!.type == '3' ? studentCourseModel[index].courseId!: listCourseModel[index].courseId!,));
+                              Get.to(AttendanceForCourse(courseId : courseId,uId: listStudentsCourse[index].uId!,isTeacher: true,));
                             },
                           ),
                       separatorBuilder: (context, index) =>

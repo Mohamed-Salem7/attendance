@@ -10,14 +10,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class AttendanceForCourse extends StatelessWidget {
-  const AttendanceForCourse({Key? key, required this.courseId})
+   AttendanceForCourse({Key? key, required this.courseId, required this.isTeacher,this.uId})
       : super(key: key);
 
   final String courseId;
+  final bool isTeacher;
+
+  String? uId;
 
   @override
   Widget build(BuildContext context) {
-    MainCubit.get(context).getAttendanceStudent(courseId: courseId);
+    if(isTeacher) {
+      MainCubit.get(context).getAttendanceStudentForTeacher(courseId: courseId,uId: uId!);
+    }else {
+      MainCubit.get(context).getAttendanceStudent(courseId: courseId);
+    }
     return Directionality(
       textDirection: languageApp == 'Arabic' ? textDirection[0] : textDirection[1],
       child: BlocConsumer<MainCubit, MainState>(
