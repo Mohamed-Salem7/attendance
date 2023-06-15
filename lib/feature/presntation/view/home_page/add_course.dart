@@ -263,6 +263,10 @@ class AddCourse extends StatelessWidget {
             ),
           );
         },
-        listener: (context, state) {});
+        listener: (context, state) {
+          if(state is SuccessAddNewSectionCourseState) {
+            Navigator.pop(context);
+          }
+        });
   }
 }

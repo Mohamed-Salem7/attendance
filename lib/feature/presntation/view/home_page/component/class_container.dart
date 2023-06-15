@@ -48,7 +48,7 @@ class ClassContainer extends StatelessWidget {
                 height: 10.h,
               ),
               Text(
-                languageApp == 'Arabic'? "دكتور: $name":'Dr: $name',
+                 name,
                 style: TextStyle(
                   fontSize: 14.spMin,
                   fontWeight: FontWeight.w400,

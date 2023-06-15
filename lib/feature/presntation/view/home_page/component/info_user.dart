@@ -18,7 +18,7 @@ class _InfoUserState extends State<InfoUser> {
   @override
   Widget build(BuildContext context) {
     return Container  (
-      height: languageApp == 'Arabic'? 120.h : 95.h,
+      height: languageApp == 'Arabic'? 130.h : 105.h,
       width: 360.w,
       padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
       decoration: BoxDecoration(

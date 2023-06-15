@@ -71,6 +71,8 @@ class AuthCubit extends Cubit<AuthState> {
         .then((value) async {
       uId = email;
       uIds =email;
+
+
       await sendDataUserToFirebase(
           email: email, name: name, mobile: mobile, type: type);
 

@@ -91,7 +91,18 @@ class MainCubit extends Cubit<MainState> {
       'timingToLecture': timingToLecture,
       'courseId': courseId,
       'drName': userData!.name,
-    }).then((value) {
+      'member' : [],
+    }).then((value) async{
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uIds)
+          .collection('course')
+          .doc()
+          .set({
+        'name': name,
+        'courseId': courseId,
+        'time joined': DateTime.now().toString(),
+      });
       emit(SuccessAddNewSectionCourseState());
     }).catchError((e) {
       emit(ErrorAddNewSectionCourseState());
