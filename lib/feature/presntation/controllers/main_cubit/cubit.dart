@@ -15,6 +15,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class MainCubit extends Cubit<MainState> {
@@ -296,6 +298,16 @@ class MainCubit extends Cubit<MainState> {
         attendanceModel = AttendanceModel.fromJson(element.data());
         listAttendanceModel.add(attendanceModel!);
       });
+
+      Fluttertoast.showToast(
+          msg: "Successful record attendance",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.spMin
+      );
       emit(SuccessGetRecordAttendanceStudentState());
     }).catchError((error) {
       emit(ErrorGetRecordAttendanceStudentState());

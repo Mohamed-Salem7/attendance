@@ -35,6 +35,7 @@ class HomeScreen extends StatelessWidget {
       'Ahmed Mahdi'
     ];
 
+    MainCubit.get(context).getTime();
     MainCubit.get(context).getUserData();
     MainCubit.get(context).getSectionCourse();
     return Directionality(
@@ -103,7 +104,7 @@ class HomeScreen extends StatelessWidget {
               BlocConsumer<MainCubit, MainState>(
                   listener: (context, state) {},
                   builder: (context, state) {
-                    MainCubit.get(context).getTime();
+
                     return BuildCondition(
                       condition: userData != null,
                       builder: (context) => const InfoUser(),

@@ -9,6 +9,7 @@ import 'package:attendance_app/feature/presntation/view/main_layout/main_layout.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -119,7 +120,9 @@ class _ScanQrState extends State<ScanQr> {
       );
     }, listener: (context, state) {
       if (state is SuccessRecordAttendanceStudentState) {
-         navigatorFinished(context,const MainLayout());
+        navigatorFinished(context, const MainLayout());
+
+
       }
     });
   }
@@ -164,63 +167,47 @@ class _ScanQrState extends State<ScanQr> {
 
       print(uIdStudent);
 
-
-
-
-
-
       DateTime dateTime = DateTime.now();
       String dateCompare = DateFormat.Md().format(dateTime);
-      List<String> dates=[];
+      List<String> dates = [];
       dates = dateCompare.split('/');
       int monthNow = int.parse(dates[0]);
       int dayNow = int.parse(dates[1]);
 
       bool isSend = false;
 
-      if(uIdStudent != null && isShow)
-      {
-
-        if(listAttendanceModel.length ==0)
-        {
+      if (uIdStudent != null && isShow) {
+        if (listAttendanceModel.length == 0) {
           isSend = true;
           isShow = false;
         }
 
-
-        for(int i = 0; i < listAttendanceModel.length; i++)
-        {
+        for (int i = 0; i < listAttendanceModel.length; i++) {
           DateTime times = DateTime.parse(listAttendanceModel[i].time!);
           String date = DateFormat.Md().format(times);
-          List<String> dateList=[];
+          List<String> dateList = [];
           dateList = date.split('/');
           int month = int.parse(dateList[0]);
           int day = int.parse(dateList[1]);
 
-
-
-          if(monthNow > month) {
-              if (dayNow == 1) {
-                isSend = true;
-                isShow = false;
-              }
+          if (monthNow > month) {
+            if (dayNow == 1) {
+              isSend = true;
+              isShow = false;
+            }
           }
 
-          if(monthNow == month) {
-              if (dayNow > day) {
-                isSend = true;
-                isShow = false;
-              }
+          if (monthNow == month) {
+            if (dayNow > day) {
+              isSend = true;
+              isShow = false;
+            }
           }
           if (isSend) break;
         }
       }
 
-
-
-
-
-      if(isSend) {
+      if (isSend) {
         for (int i = 0; i < studentCourseModel.length; i++) {
           if (studentCourseModel[i].courseId == widget.courseId) {
             MainCubit.get(context).recordAttendance(
@@ -228,6 +215,8 @@ class _ScanQrState extends State<ScanQr> {
               uIds: uIdStudent,
               data: qrCode,
             );
+
+
           } else {}
         }
         isSend = false;
